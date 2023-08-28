@@ -9,6 +9,13 @@ Wardiere is a modern web application designed to streamline the hotel booking ex
 - **Room Booking**: Seamless booking experience allowing users to choose rooms for specific dates.
 - **Admin Panel**: A robust admin interface for managing users, hotels, rooms, and bookings.
 
+## Tech Stack
+
+- **Backend**: Node.js with Express.js
+- **Database**: MongoDB
+- **Frontend**: HTML, CSS, JavaScript
+- **Authentication**: JWT (JSON Web Tokens)
+
 ## Usage
 
 ### Admin Panel:
