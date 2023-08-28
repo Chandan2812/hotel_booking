@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>Hotel Booking Website</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/book.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <section class="head">
+        <div class="container flex1">
+          <div class="scoial">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="logo">
+            <img src="image/ll.png" alt="" style="width: 200px; height: 80px;">
+          </div>
+          <div class="address">
+            <i class="fas fa-map-marker-alt"></i>
+         
+          </div>
+        </div>
+    </section>
+    
+    
+      <header class="header">
+        <div class="container">
+          <nav class="navbar flex1">
+            <div class="sticky_logo logo">
+              <img src="image/log.png" alt="" style="width: 200px; height: 80px;">
+            </div>
+    
+            <ul class="nav-menu">
+              <li> <a href="index.html">Home</a> </li>
+              <li> <a href="index.html">✈️ Flights</a> </li>
+              <li> <a href="hotel.html">🏬 Hotels</a> </li>
+              <li> <a href="index.html">🚖 Car Rentals</a> </li>
+              <li> <a href="travel.html">🧾 My Travels</a> </li>
+            </ul>
+            <div class="hamburger">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+    
+            <div class="head_contact">
+              <!-- <i class="fas fa-phone-volume"></i> -->
+              <span><a href="login.html" id="login_btn">Login</a></span>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+    
+        hamburger.addEventListener("click", mobliemmenu);
+    
+        function mobliemmenu() {
+          hamburger.classList.toggle("active");
+          navMenu.classList.toggle("active");
+        }
+    
+        window.addEventListener("scroll", function() {
+          var header = document.querySelector("header");
+          header.classList.toggle("sticky", window.scrollY > 0)
+        })
+      </script>
+
+
+<!-- ------------------------------------------------ -->
+
+<div class="list">
+    <div>
+        
+        <img id="hotelimg" alt="">
+        
+        
+        <div class="small">
+            <img src="https://img.freepik.com/free-photo/luxury-modern-style-bedroom-interior-hotel-bedroom-generative-ai-illustration_1258-151610.jpg" alt="">
+            <img src="https://publish.purewow.net/wp-content/uploads/sites/2/2019/08/grand-velas.jpeg?fit=1360%2C906" alt="">
+           <img src="https://media.istockphoto.com/id/1299710067/photo/double-bedroom-with-sea-view.jpg?s=612x612&w=0&k=20&c=LPNC-aqrsOsgxU8eqPcR38ACIOIjqAmh0VSKclIa2gs=" alt="">
+        </div>
+        <div class="view">
+            <p>City View</p>
+            <p>Swimming Pool</p>
+            <p>BBQ Facilities</p>
+            <p>Free Wi-Fi</p>
+            <p>Free Parking</p>
+        </div>
+        <div class="view">
+            <p>Air Conditioning</p>
+            <p>24 hour front desk</p>
+            <p>Key Card Access</p>
+            <p>Daily housekeeping</p>
+        </div>
+    </div>
+    <div>
+        <h3 id="name"></h3>
+        <p>This stylish hotel, boasts 5 dining options and a rooftop swimming pool. Located in the heart of Ernakulam City, it houses a gym and spa. Free WiFi is available throughout the property.</p>
+        <p>Offering a modern décor, air-conditioned rooms at Radisson Blu Kochi feature a flat-screen TV and a personal safe. A minibar and coffee/tea making facilities are included. Room service is available round-the-clock.</p>
+        <p>disson Blu is a 45-minute drive from Cochin International Airport and an hour’s drive from Cherai Beach.</p>
+        <p>Keshia Restaurant, which is also a 24-hour coffee shop offers buffet and á la carte specialities while Zhima serving Oriental cuisine offers authentic Chinese cuisines. Overlooking Cochin, the rooftop High Bar features cocktails and barbecued meals with Mediterranean dishes.</p>
+        <p>Guests can soak in a steam bath or enjoy a spa treatment. Alternatively, they can exercise in the gym, which also offers personal training sessions. Other facilities include a business centre and a tour desk.</p>
+        <br>
+        <button id="booking">Book Now</button>
+    </div>
+</div>
+<!-- The Modal -->
+<div id="bookingModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Book a Room</h2>
+    
+    <div class="date-container">
+      <div class="date-field">
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate" name="startDate">
+      </div>
+      
+      <div class="date-field">
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate" name="endDate">
+      </div>
+  </div>
+
+    <button id="submitBooking">Submit</button>
+  </div>
+</div>
+<!-- ------End Model-- -->
+<div class="surroundings">
+    <div>
+        <h3>What's nearby</h3>
+        <div class="dis">
+            <p> Panampilli Central Park</p>
+            <p>1.2KM</p>
+        </div>
+        <div class="dis">
+            <p>PNWA Park</p>
+            <p>1.5KM</p>
+        </div>
+        <div class="dis">
+            <p>Panampilli Park</p>
+            <p>2KM</p>
+        </div>
+        <div class="dis">
+            <p>Ernakulathapan ground</p>
+            <p>2KM</p>
+        </div>
+        <div class="dis">
+            <p>Marine Drive Kochi</p>
+            <p>2.6KM</p>
+        </div>
+        <div class="dis">
+            <p>Rainbow Bridge Ernakulam</p>&nbsp;
+            <p>3KM</p>
+        </div>
+        <div class="dis">
+            <p>Kerala Folklore Museum</p>&nbsp;
+            <p>3.5KM</p>
+        </div>
+        
+    </div>
+    <div>
+        <h3>Restaurant & Cafes</h3>
+        <div class="dis">
+            <p> Balaji Vegetarian Restaurant</p>&nbsp;
+            <p>300m</p>
+        </div>
+        <div class="dis">
+            <p>Hotel Denny's</p>
+            <p>500m</p>
+        </div>
+        <div class="dis">
+            <p>Wonder Cane</p>
+            <p>700m</p>
+        </div>
+        <h3>Attractions</h3>
+        <div class="dis">
+            <p>Mattancherry Palace</p>
+            <p>1KM</p>
+        </div>
+        <div class="dis">
+            <p>Hill Palace Museum</p>
+            <p>1.6KM</p>
+        </div>
+        <div class="dis">
+            <p>Vasco Da Gama Square</p>
+            <p>2KM</p>
+        </div>
+        <div class="dis">
+            <p>Indo-Portuguese Museum</p>
+            <p>2.5KM</p>
+        </div>
+        <div class="dis">
+            <p>SNC Maritime Museum</p>
+            <p>3.5KM</p>
+        </div>
+    </div>
+    <div>
+        <h3>Natural Beauty</h3>
+        <div class="dis">
+            <p> Vypin Island</p>
+            <p>10KM</p>
+        </div>
+        <h3>Beaches in the neighbourhood</h3>
+        <div class="dis">
+            <p>Fort Kochi Beach</p>
+            <p>7KM</p>
+        </div>
+        <h3>Public transport</h3>
+        <div class="dis">
+            <p>Ernakulam Railway Station</p>
+            <p>2KM</p>
+        </div>
+        <div class="dis">
+            <p>M. G. Road</p>
+            <p>3KM</p>
+        </div>
+        <div class="dis">
+            <p>Ernakulam Town</p>
+            <p>3.6KM</p>
+        </div>
+        <h3>Closest airports</h3>
+        <div class="dis">
+            <p>Cochin International Airport</p>
+            <p>20KM</p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ---------------------------------------------------- -->
+
+<footer>
+    <div class="container top">
+      <div class="subscribe" id="contact">
+        <h2>Subscribe newsletter</h2>
+        <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="input flex">
+          <input type="email" placeholder="Your Email address">
+          <button class="flex1">
+            <span>Subscribe</span>
+            <i class="fas fa-arrow-circle-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="content grid  top">
+        <div class="box">
+          <div class="logo">
+            <img src="image/ll.png" alt="" style="width: 200px; height: 80px;">
+          </div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          <div class="social flex">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+
+        <div class="box">
+          <h2>Quick Links</h2>
+          <ul>
+            <li><i class="fas fa-angle-double-right"></i>Big Data</li>
+            <li><i class="fas fa-angle-double-right"></i>Wellness</li>
+            <li><i class="fas fa-angle-double-right"></i>Spa Gallery</li>
+            <li><i class="fas fa-angle-double-right"></i>Reservation</li>
+            <li><i class="fas fa-angle-double-right"></i>FAQ</li>
+            <li><i class="fas fa-angle-double-right"></i>Contact</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h2>Services</h2>
+          <ul>
+            <li><i class="fas fa-angle-double-right"></i>Restaurant</li>
+            <li><i class="fas fa-angle-double-right"></i>Swimming Pool</li>
+            <li><i class="fas fa-angle-double-right"></i>Wellness & Spa</li>
+            <li><i class="fas fa-angle-double-right"></i>Conference Room</li>
+            <li><i class="fas fa-angle-double-right"></i>Events</li>
+            <li><i class="fas fa-angle-double-right"></i>Adult Room</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h2>Services</h2>
+          <div class="icon flex">
+            <div class="i">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="text">
+              <h3>Address</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, exercitationem.</p>
+            </div>
+          </div>
+          <div class="icon flex">
+            <div class="i">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="text">
+              <h3>Phone</h3>
+              <p>+123 456 7898</p>
+            </div>
+          </div>
+          <div class="icon flex">
+            <div class="i">
+              <i class="far fa-envelope"></i>
+            </div>
+            <div class="text">
+              <h3>Email</h3>
+              <p>hello@wardiere.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+<script src="./scripts/index.js"></script>
+<script src="./scripts/book.js"></script>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- <link rel="stylesheet" href="admin.css"> -->
+    <style>
+        body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eaeaea;
+    }
+
+    .dashboard {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 20%;
+        background-color: #34495e;
+        color: #ecf0f1;
+        padding: 20px 0;
+    }
+
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        text-align: center;
+        margin: 20px 0;
+        padding: 10px;
+        border-bottom: 1px solid #2c3e50;
+    }
+
+    .sidebar ul li:last-child {
+        border: none;
+    }
+
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #ecf0f1;
+        transition: background 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+        background-color: #2c3e50;
+        border-radius: 5px;
+        padding: 5px 15px;
+    }
+
+    .main-content {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .metrics {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;  
+    }
+
+    .card {
+        background-color: #ecf0f1;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 18%;
+        text-align: center;
+        margin: 10px 0; 
+    }
+
+    .total-users {
+        background-color: #f39c12;
+        color: white;
+    }
+
+    .total-hotels {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .total-bookings {
+        background-color: #2ecc71;
+        color: white;
+    }
+
+    .confirmed-bookings {
+        background-color: #8e44ad;
+        color: white;
+    }
+
+    .cancelled-bookings {
+        background-color: #e74c3c;
+        color: white;
+    }
+    .chart-container {
+        width: 80%;  /* or any desired width */
+        margin: 20px auto;
+    }
+    .main-content>div{
+        display: flex;
+        justify-content: space-between;
+    }
+    .main-content>div>img{
+        width: 15%;
+        margin-right: 40px;
+    }
+    #logout{
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="admin.html">Dashboard</a></li>
+            <li><a href="adminUser.html">User Management</a></li>
+            <li><a href="adminHotel.html">Hotel & Room Management</a></li>
+            <li><a href="adminBooking.html">Booking Management</a></li>
+            <!-- Add other links as needed -->
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div>
+            <h1>Booking Management</h1>
+            <img src="./image/ll.png" alt="">
+            <h2 id="logout">Logout</h2>
+        </div>
+
+        <!-- Metrics -->
+<div class="metrics">
+    <div class="card total-users">
+        <h3>Total Users</h3>
+        <p id="users"></p>
+    </div>
+    <div class="card total-hotels">
+        <h3>Total Hotels</h3>
+        <p id="hotels"></p>
+    </div>
+    <div class="card total-bookings">
+        <h3>Total Bookings</h3>
+        <p id="bookings"></p>
+    </div>
+    <div class="card confirmed-bookings">
+        <h3>Confirmed Bookings</h3>
+        <p id="confirmed"></p>
+    </div>
+    <div class="card cancelled-bookings">
+        <h3>Cancelled Bookings</h3>
+        <p id="cancelled"></p>
+    </div>
+</div>
+
+<div class="chart-container">
+    <canvas id="bookingChart"></canvas>
+</div>
+
+    </div>
+
+</div>
+
+</body>
+<script>
+
+document.getElementById("logout").addEventListener("click",()=>{
+        window.location.href="login.html"
+    })
+    document.addEventListener("DOMContentLoaded", function(event) {
+    var ctx = document.getElementById('bookingChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',  
+        data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                label: 'Bookings',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                borderColor: 'rgb(75, 192, 192)', 
+                data: [5, 10, 3, 7, 20, 10, 6]
+            }]
+        },
+        options: {}
+    });
+});
+
+const users=document.getElementById("users")
+const hotels=document.getElementById("hotels")
+const bookings=document.getElementById("bookings")
+const confirmed=document.getElementById("confirmed")
+const cancelled=document.getElementById("cancelled")
+
+window.addEventListener("load",()=>{
+    fetch('https://hotel-ydop.onrender.com/user')
+    .then(res=>res.json())
+    .then(data=>{
+        users.innerText=data.length;
+    })
+    .catch(error => console.log('There was a problem with the fetch operation:', error.message));
+
+
+    fetch('https://hotel-ydop.onrender.com/hotel/')
+    .then(res=>res.json())
+    .then(data=>{
+        hotels.innerText=data.length;
+    })
+    .catch(error => console.log('There was a problem with the fetch operation:', error.message));
+
+
+    fetch('https://hotel-ydop.onrender.com/booking')
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        bookings.innerText=data.bookings.length;
+        cancelled.innerText=data.cancelled.length;
+        confirmed.innerText=data.confirmed.length;
+    })
+    .catch(error => console.log('There was a problem with the fetch operation:', error.message));
+})
+
+
+</script>
+</html>
